@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  app-service:
+    container_name: voucher-service
+    image: osamamosaad/voucher-service:1.0.0
+    build:
+      context: .
+    volumes:
+      - ./app:/app
+    command: >
+      npm run migration:run
+      npm run start:dev
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks:
+      net_range:
+        ipv4_address: 172.14.0.14
+
+  db:
+    container_name: db
+    hostname: db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: no
+      MYSQL_DATABASE: voucher_pool
+    ports:
+      - 33064:3306
+    volumes:
+      - mysqlDB:/var/lib/mysql:delegated
+    networks:
+      net_range:
+        ipv4_address: 172.14.0.4
+
+volumes:
+  mysqlDB:
+
+networks:
+  net_range:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.14.0.0/24

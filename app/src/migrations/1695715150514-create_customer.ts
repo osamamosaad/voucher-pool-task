@@ -16,12 +16,13 @@ export class CreateCustomer1695715150514 implements MigrationInterface {
             {
               name: 'name',
               type: 'varchar',
-              length: '255',
+              length: '60',
             },
             {
               name: 'email',
               type: 'varchar',
-              length: '255',
+              length: '60',
+              isUnique: true,
             },
           ],
         }), true);

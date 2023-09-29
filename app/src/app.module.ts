@@ -14,10 +14,10 @@ import { VoucherModule } from './voucher/voucher.module';
       isGlobal: true,
       load: [typeorm]
     }),
-    // TypeOrmModule.forRootAsync({
-    //   inject: [ConfigService],
-    //   useFactory: async (configService: ConfigService) => (configService.get('typeorm'))
-    // }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => (configService.get('typeorm'))
+    }),
     CustomerModule,
     VoucherModule,
   ],

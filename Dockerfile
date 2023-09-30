@@ -12,7 +12,6 @@ COPY app/ .
 
 RUN npm run build
 
-RUN npm run migration:run
 
 EXPOSE 3000
 

@@ -30,6 +30,19 @@ export class CustomerService {
 
       return customer;
     }
+
+    public getCustomer(id: number) {
+      return this.customerRepository.findOneBy({id});
+    }
+
+    public getCustomers(limit: number = null) {
+      const options = {};
+      if (limit) {
+        options['take'] = limit;
+      }
+
+      return this.customerRepository.find(options);
+    }
 }
 
 

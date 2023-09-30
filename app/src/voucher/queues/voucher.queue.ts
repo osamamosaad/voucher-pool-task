@@ -9,4 +9,8 @@ export class VoucherQueue {
   public store(data: any): Promise<any> {
     return this.queue.add('voucher-store-job', data);
   }
+
+  public sendEmail(data: any): Promise<any> {
+    return this.queue.add('voucher-email-send-job', data);
+  }
 }

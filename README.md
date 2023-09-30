@@ -26,7 +26,8 @@ The following diagrams serve as a simple illustration of my thoughts. I hope the
 Have a look to ERD [Here](./ERD.png)
 
 
-
+## API
+Postman API [HERE](https://documenter.getpostman.com/view/28881390/2s9YJaZ4V2)
 
 ## How to run
 You can use the following commands within your project directory to setup and run the application:

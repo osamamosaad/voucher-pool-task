@@ -27,7 +27,7 @@ describe('CreateVoucherService', () => {
               {
                 provide: CustomerService,
                 useFactory: () => ({
-                  getCustomers: jest.fn(),
+                    getCustomersNotAssinedToOffer: jest.fn(),
                 })
               },
               {
@@ -52,7 +52,7 @@ describe('CreateVoucherService', () => {
                 offerId: 14,
                 id: 1
             };
-            jest.spyOn(customerService, 'getCustomers').mockResolvedValue([]);
+            jest.spyOn(customerService, 'getCustomersNotAssinedToOffer').mockResolvedValue([]);
 
             // Act and Assert
             await expect(
@@ -96,7 +96,7 @@ describe('CreateVoucherService', () => {
                 },
             ];
             jest.spyOn(offerService, 'getOffer').mockResolvedValue(offer);
-            jest.spyOn(customerService, 'getCustomers').mockResolvedValue(customers);
+            jest.spyOn(customerService, 'getCustomersNotAssinedToOffer').mockResolvedValue(customers);
             jest.spyOn(voucherQueue, 'store').mockResolvedValue(undefined);
 
             // Act

@@ -21,7 +21,7 @@ export class CreateVoucherService {
 
         this.validate(offer);
 
-        const customers = await this.customerService.getCustomers(20);
+        const customers = await this.customerService.getCustomersNotAssinedToOffer(voucherDto.offerId, 20);
         if (!customers) {
             throw new NotFoundException('Customers not found');
         }

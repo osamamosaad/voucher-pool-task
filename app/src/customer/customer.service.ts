@@ -43,6 +43,17 @@ export class CustomerService {
 
       return this.customerRepository.find(options);
     }
+
+  public getCustomersNotAssinedToOffer(offerId: number, limit: number) {
+
+    const queryBuilder = this.customerRepository.createQueryBuilder('c')
+      .leftJoin('c.vouchers', 'v', 'v.offerId = :offerId', { offerId })
+      .where('v.id IS NULL')
+      .select('c')
+      .limit(limit);
+
+    return queryBuilder.getMany();
+  }
 }
 
 

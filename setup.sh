@@ -16,7 +16,7 @@ docker-compose build \
 
 echo "\n\033[43m\033[1;30mWaiting for mysql connection...\033[0m"
 echo "Note: this operation is to make sure that mysql is ready to can run the database migrations."
-while ! docker exec db mysql --user=root --password=root -e "SELECT 1" >/dev/null 2>&1; do
+while ! docker exec db-voucher mysql --user=root --password=root -e "SELECT 1" >/dev/null 2>&1; do
     sleep 1
 done
 echo "\e[32mMySQL is ready.\033[0m"

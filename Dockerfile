@@ -5,13 +5,11 @@ WORKDIR /app
 COPY app/tsconfig.json ./
 COPY app/package*.json ./
 
+COPY app/ .
 
 RUN npm install
 
-COPY app/ .
-
 RUN npm run build
-
 
 EXPOSE 3000
 

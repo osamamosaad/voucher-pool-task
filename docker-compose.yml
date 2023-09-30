@@ -5,8 +5,6 @@ services:
     image: osamamosaad/voucher-service:1.0.0
     build:
       context: .
-    volumes:
-      - ./app:/app
     ports:
       - ${VOUCHER_SERVICE_PORT}:3000
     depends_on:
@@ -17,7 +15,7 @@ services:
         ipv4_address: ${VOUCHER_SERVICE_IP}
 
   db:
-    container_name: db
+    container_name: db-voucher
     hostname: db
     image: mysql:8
     environment:
@@ -30,13 +28,13 @@ services:
       - mysqlDB:/var/lib/mysql:delegated
     networks:
       net_range:
-        ipv4_address: 172.14.0.4
+        ipv4_address: ${DATABASE_HOST}
 
   redis:
     image: redis
     networks:
       net_range:
-        ipv4_address: 172.14.0.8
+        ipv4_address: ${REDIS_HOST}
 
 volumes:
   mysqlDB:

@@ -29,6 +29,7 @@ export class CreateCustomerVoucher1696010353831 implements MigrationInterface {
                     type: 'varchar',
                     length: '12',
                     isNullable: false,
+                    isUnique: true,
                 },
                 {
                     name: 'is_used',

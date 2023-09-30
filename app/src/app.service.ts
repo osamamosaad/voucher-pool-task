@@ -5,6 +5,7 @@ import { config as dotenvConfig } from 'dotenv';
 export class AppService {
   getHello(): string {
     dotenvConfig({ path: '.env' });
-    return 'Hello World! in nestjs ' + __dirname + "../";
+    
+    return 'Hello World!';
   }
 }

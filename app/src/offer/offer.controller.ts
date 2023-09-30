@@ -19,8 +19,8 @@ export class OfferController {
 
     @Post()
     @UsePipes(ValidationPipe)
-    public create(@Body() offerDto: OfferDto) {
-        this.offerService.create(offerDto)
+    public async create(@Body() offerDto: OfferDto) {
+        await this.offerService.create(offerDto)
     }
 
     @Patch(':id')

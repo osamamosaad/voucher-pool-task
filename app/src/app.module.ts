@@ -6,6 +6,9 @@ import typeorm from './config/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CustomerModule } from './customer/customer.module';
 import { VoucherModule } from './voucher/voucher.module';
+import { OfferService } from './offer/offer.service';
+import { OfferController } from './offer/offer.controller';
+import { OfferModule } from './offer/offer.module';
 
 
 @Module({
@@ -20,6 +23,7 @@ import { VoucherModule } from './voucher/voucher.module';
     }),
     CustomerModule,
     VoucherModule,
+    OfferModule,
   ],
   controllers: [AppController],
   providers: [AppService],

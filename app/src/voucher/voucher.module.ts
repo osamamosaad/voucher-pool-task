@@ -5,18 +5,22 @@ import { Voucher } from './voucher.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerModule } from 'src/customer/customer.module';
 import { OfferModule } from 'src/offer/offer.module';
+import { VoucherQueue } from './queues/voucher.queue';
 import { BullModule } from '@nestjs/bull';
-import { MessengerModule } from 'src/messenger/messenger.module';
-
+import { VoucherConsumer } from './queues/voucher.consumer';
 @Module({
   imports: [
+    BullModule.registerQueue(
+      {
+          name: 'voucher-pool-quueue',
+      }
+  ),
     TypeOrmModule.forFeature([Voucher]),
     CustomerModule,
     OfferModule,
-    MessengerModule,
   ],
   controllers: [VoucherController],
-  providers: [VoucherService]
+  providers: [VoucherService, VoucherQueue, VoucherConsumer]
 })
 export class VoucherModule {
 }

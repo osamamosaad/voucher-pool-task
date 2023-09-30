@@ -8,7 +8,7 @@ import { CustomerModule } from './customer/customer.module';
 import { OfferModule } from './offer/offer.module';
 import { VoucherModule } from './voucher/voucher.module';
 import { BullModule } from '@nestjs/bull';
-import { MessengerModule } from './messenger/messenger.module';
+import { VoucherConsumer } from './voucher/queues/voucher.consumer';
 
 @Module({
   imports: [
@@ -29,11 +29,10 @@ import { MessengerModule } from './messenger/messenger.module';
     CustomerModule,
     VoucherModule,
     OfferModule,
-    MessengerModule
   ],
   controllers: [AppController],
   providers: [
-    AppService,
+    AppService
   ],
 })
 export class AppModule {}

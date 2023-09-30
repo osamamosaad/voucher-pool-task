@@ -7,10 +7,9 @@ import { NotFoundException } from 'src/exceptions/notfound.exception';
 import { EntityManager } from 'typeorm';
 import { OfferService } from 'src/offer/offer.service';
 import { CustomerService } from 'src/customer/customer.service';
-
-import { ProducerService } from 'src/messenger/producer.service';
 import { InvalidArgumentException } from 'src/exceptions/invalid-argument.exception';
 import { ForbidenException } from 'src/exceptions/forbiden.exception';
+import { VoucherQueue } from './queues/voucher.queue';
 
 @Injectable()
 export class VoucherService {
@@ -19,12 +18,11 @@ export class VoucherService {
         private voucherRepository: Repository<Voucher>,
         private offerService: OfferService,
         private customerService: CustomerService,
-        private em: EntityManager,
-        private producerService: ProducerService,
+        private voucherQueue: VoucherQueue,
     ) {
     }
 
-    findAll() {
+    public findAll() {
         const query: SelectQueryBuilder<Voucher> = this.voucherRepository
             .createQueryBuilder('voucher')
             .innerJoinAndSelect('voucher.customer', 'customer')
@@ -65,7 +63,7 @@ export class VoucherService {
 
         // iterait all customers and  dispatch a queue
         for (const customer of customers) {
-            await this.producerService.add('voucher-job', {
+            await this.voucherQueue.store({
                 customerId: customer.id,
                 offerId: offer.id,
                 offerExoirationDate: offer.expirationDate

@@ -5,11 +5,11 @@ import { EntityManager } from "typeorm";
 import * as voucherCodeGenerator from 'voucher-code-generator';
 
 @Processor('voucher-pool-quueue')
-export class QueueConsumer {
+export class VoucherConsumer {
 
     constructor(private readonly em: EntityManager) {}
 
-    @Process('voucher-job')
+    @Process('voucher-store-job')
     async readOperationJob(job: Job<any>) {
         const data = job.data;
         console.log('Start voucher generation for customer: ', data.customerId, ' with offer: ', data.offerId);

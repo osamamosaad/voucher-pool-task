@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Customer } from './customer.entity';
-import { NotFoundException } from 'src/exceptions/notfound';
+import { NotFoundException } from 'src/exceptions/notfound.exception';
 
 
 @Injectable()
@@ -14,7 +14,7 @@ export class CustomerService {
     ) {
     }
 
-    findAll() {
+    public findAll() {
       return this.customerRepository.find();
     }
 

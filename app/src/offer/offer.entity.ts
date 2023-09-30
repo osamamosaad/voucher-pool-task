@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Voucher } from "src/voucher/voucher.entity";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm"
 
 @Entity()
 export class Offer {
@@ -19,4 +20,7 @@ export class Offer {
 
     @Column({name: 'expiration_date', type: 'timestamp'})
     public expirationDate: Date
+
+    @OneToMany(() => Voucher, (voucher) => voucher.offer)
+    vouchers: Voucher[];
 }

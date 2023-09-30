@@ -22,6 +22,20 @@ export class CreateOfferTable1695947996339 implements MigrationInterface {
                 name: 'percentage',
                 type: 'float',
               },
+              {
+                name: 'created_at',
+                type: 'timestamp',
+                default: 'now()',
+            },
+            {
+                name: 'updated_at',
+                type: 'timestamp',
+                isNullable: true,
+            },
+            {
+                name: 'expiration_date',
+                type: 'timestamp',
+            },
             ],
           }), true);
     }

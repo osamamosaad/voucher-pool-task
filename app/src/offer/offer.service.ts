@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Offer } from './offer.entity';
 import { Repository } from 'typeorm';
@@ -85,5 +85,9 @@ export class OfferService {
             console.error('Failed to update the offer:', error);
             throw error;
         }
+    }
+
+    public getOffer(id: number) {
+        return this.offerRepository.findOne({where: {id}});
     }
 }

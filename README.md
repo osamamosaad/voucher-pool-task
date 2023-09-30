@@ -19,11 +19,11 @@ Additionally, the voucher generation code should be relocated to a dedicated mic
 An alternative solution is to assign a single voucher code to an entire offer. That will reduce the generation costs and prevent duplication errors. In this scenario, there is no need to create a separate record for each user at the first; we can insert the record only when redemption occurs, and that will reduce the cost of generation, reduect the hevey write in the db, and also desk space, becase not each customer use the voucher.
 
 
-The following diagrams serve as a simple illustration of my thoughts. I hope they are helpful.
-
+The following diagrams serve as a simple illustration of my thoughts. I hope they are helpful. [Here](https://raw.githubusercontent.com/osamamosaad/voter-pool-task/master/scratches.svg?token=GHSAT0AAAAAACF7D27W3RSJWEEK3LXF4VIKZIYSKNA)
 
 
 ## ERD
+Have a look to ERD [Here](./ERD.png)
 
 
 

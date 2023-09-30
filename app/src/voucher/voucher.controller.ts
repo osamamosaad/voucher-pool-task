@@ -1,11 +1,18 @@
-import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
-import { VoucherService } from './voucher.service';
+import { Body, Controller, Get, Inject, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { VoucherReadService} from './voucher-read.service';
 import { VoucherDto } from './dto/voucher.dto';
 import { VoucherRedeemDto } from './dto/voucher-redeem.dto';
+import { CreateVoucherService } from './create-voucher.service';
+import { RedeemVoucherService } from './redeem-voucher.service';
 
 @Controller('voucher')
 export class VoucherController {
-    constructor(private readonly voucherService: VoucherService) { }
+    constructor(
+        private readonly voucherService: VoucherReadService,
+        private readonly createVoucherService: CreateVoucherService,
+        private readonly redeemVoucherService: RedeemVoucherService,
+    ) { }
+
     @Get()
     findAll() {
         return this.voucherService.findAll();
@@ -13,13 +20,15 @@ export class VoucherController {
 
     @Post()
     @UsePipes(ValidationPipe)
-    public async create(@Body() voucherDto: VoucherDto) {
-        await this.voucherService.create(voucherDto)
+    public async create(
+        @Body() voucherDto: VoucherDto
+    ) {
+        await this.createVoucherService.handle(voucherDto)
     }
 
     @Post("redeem")
     @UsePipes(ValidationPipe)
     public async redeem(@Body() voucherRedeemDto: VoucherRedeemDto) {
-        await this.voucherService.redeem(voucherRedeemDto.voucherCode, voucherRedeemDto.customerId);
+        await this.redeemVoucherService.handle(voucherRedeemDto.voucherCode, voucherRedeemDto.customerId);
     }
 }
